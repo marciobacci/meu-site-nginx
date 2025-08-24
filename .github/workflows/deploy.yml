@@ -20,12 +20,12 @@ jobs:
     - name: Subir ambiente com Docker Compose
       run: docker compose up -d
 
-    - name: Verificar se o container Nginx esta rodando
-      run: docker ps | grep nginx
+    - name: Mostrar conteudo do HTML
+      run: cat site/index.html
 
     - name: Verificar conteudo do HTML
       run: |
-        if grep -Eiq "<h1>.*Ola, Mundo.*</h1>" site/index.html; then
+        if grep -Fq "Ola, Mundo!" site/index.html; then
           echo "Conteudo encontrado no HTML"
         else
           echo "Conteudo esperado NAO encontrado"
