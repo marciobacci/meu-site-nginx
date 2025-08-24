@@ -30,36 +30,4 @@ jobs:
         else
           echo "Conteudo esperado NAO encontrado"
           exit 1
-        finame: Deploy Nginx Site
-
-on:
-  push:
-    branches: [ main ]
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout do codigo
-      uses: actions/checkout@v3
-
-    - name: Instalar Docker e Docker Compose
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y docker-compose docker.io
-
-    - name: Subir ambiente com Docker Compose
-      run: docker-compose up -d
-
-    - name: Verificar se o container Nginx esta rodando
-      run: docker ps | grep nginx
-
-    - name: Verificar conteudo do HTML
-      run: |
-        if grep -q "Ola, Mundo" site/index.html; then
-          echo "Conteudo encontrado no HTML"
-        else
-          echo "Conteudo esperado NAO encontrado"
-          exit 1
         fi
