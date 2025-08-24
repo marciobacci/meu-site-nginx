@@ -25,7 +25,7 @@ jobs:
 
     - name: Verificar conteudo do HTML
       run: |
-        if grep -q "Ola, Mundo!" site/index.html; then
+        if grep -qE ".*Ola, Mundo!" site/index.html; then
           echo "Conteudo encontrado no HTML"
         else
           echo "Conteudo esperado NAO encontrado"
